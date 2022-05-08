@@ -176,3 +176,5 @@ out
 # End of https://www.toptal.com/developers/gitignore/api/yarn,node,linux
 
 *.code-workspace
+
+dist/
