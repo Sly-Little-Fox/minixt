@@ -1,0 +1,38 @@
+{
+  "name": "minixt",
+  "version": "0.0.1",
+  "description": "A tiny fork of Quxt with zero dependencies",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "array",
+    "math",
+    "quxtjs",
+    "minixt"
+  ],
+  "author": "Sly-Little-Fox",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sly-Little-Fox/minixt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sly-Little-Fox/minixt/issues"
+  },
+  "homepage": "https://github.com/Sly-Little-Fox/minixt",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
