@@ -1,5 +1,5 @@
 {
-  "exclude": ["index.test-d.ts"],
+  "exclude": ["index.test-d.ts", "benchmark.ts"],
   "compilerOptions": {
     "target": "ES2017",
     "module": "ESNext",

@@ -123,7 +123,7 @@ export function must(rule: Record<any, any>) {
     let match = true;
     for (const [key, value] of Object.entries(rule)) {
       if (typeof value === "string") {
-        if (!new Function(`(${JSON.stringify(object[key])})${value}`)()) {
+        if (object[key] !== value) {
           match = false;
         }
       } else if (Array.isArray(value) && value.length > 1) {
@@ -131,16 +131,17 @@ export function must(rule: Record<any, any>) {
         const con = value.shift();
         value.forEach((item, index) => {
           if (index === 0) {
-            str += `(${JSON.stringify(object[key])})${item}`;
+            str += `object[key]${item}`;
           } else {
-            str += `${con}(${JSON.stringify(object[key])})${item}`;
+            str += `${con}object[key]${item}`;
           }
         });
-        if (!new Function(str)()) {
+        // eslint-disable-next-line no-eval
+        if (!eval(str)) {
           match = false;
         }
       } else if (typeof value === "boolean") {
-        if (!new Function(`(${JSON.stringify(object[key])}) === ${value}`)()) {
+        if (object[key] !== value) {
           match = false;
         }
       }
