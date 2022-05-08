@@ -1420,6 +1420,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minixt@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "minixt@workspace:."
+  dependencies:
+    "@types/node": ^16
+    "@typescript-eslint/eslint-plugin": ^4.33.0
+    "@typescript-eslint/parser": ^4.33.0
+    eslint: ^7.2.0
+    eslint-config-airbnb-base: ^14.2.1
+    eslint-config-airbnb-typescript: ^16.1.0
+    eslint-config-prettier: ^8.3.0
+    eslint-plugin-import: ^2.22.1
+  languageName: unknown
+  linkType: soft
+
 "ms@npm:2.0.0":
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
@@ -1622,21 +1637,6 @@ __metadata:
   checksum: b676f8c040cdc5b12723ad2f91414d267605b26419d5c821ff03befa817ddd10e238d22b25d604920340fd73efd8ba795465a0377c4adf45a4a41e4234e42dc4
   languageName: node
   linkType: hard
-
-"quxt@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "quxt@workspace:."
-  dependencies:
-    "@types/node": ^16
-    "@typescript-eslint/eslint-plugin": ^4.33.0
-    "@typescript-eslint/parser": ^4.33.0
-    eslint: ^7.2.0
-    eslint-config-airbnb-base: ^14.2.1
-    eslint-config-airbnb-typescript: ^16.1.0
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-import: ^2.22.1
-  languageName: unknown
-  linkType: soft
 
 "regexpp@npm:^3.1.0":
   version: 3.2.0
