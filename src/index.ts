@@ -35,7 +35,7 @@ export function range(start: number, end: number, step = 1) {
   return list;
 }
 
-export function exclude(...lists: any[][]) {
+export function exclude<T = any>(...lists: T[][]): T[] {
   let all: any[] = [];
   for (const list of lists) {
     all = all.concat(list);
@@ -49,14 +49,14 @@ export function exclude(...lists: any[][]) {
   return all.filter((x) => !common.includes(x));
 }
 
-export function filter(
-  list: any[],
+export function filter<T = any>(
+  list: T[],
   fun: (value: any, index: number, array: any[]) => unknown
-) {
+): T[] {
   return list.filter(fun);
 }
 
-export function intersect(...lists: any[][]) {
+export function intersect<T = any>(...lists: T[][]): T[] {
   let all: any[] = [];
   for (const list of lists) {
     all = all.concat(list);
@@ -70,9 +70,9 @@ export function intersect(...lists: any[][]) {
   });
 }
 
-export function partition(
-  list: any[],
-  rule: ((...args: any[]) => unknown) | Record<any, any> | any[] | string
+export function partition<T = any>(
+  list: T[],
+  rule: ((...args: T[]) => unknown) | Record<any, T> | T[] | string
 ) {
   if (typeof rule === "function") {
     const yes = list.filter(rule as (...args: any[]) => unknown);
@@ -99,27 +99,12 @@ export function partition(
   );
 }
 
-export function factorial(input: number) {
-  let n = 1;
-  for (let i = 2; i <= input; i += 1) {
-    n *= i;
-  }
-  return n;
-}
-
-export function fibonacci(n: number): number {
-  if (n === 0 || n === 1) {
-    return n;
-  }
-  return fibonacci(n - 1) + fibonacci(n - 2);
-}
-
 /**
  *
  * @deprecated This function is unsafe because it uses eval
  */
-export function must(rule: Record<any, any>) {
-  return (object: Record<any, any>) => {
+export function must<T = any>(rule: Record<any, T>) {
+  return (object: Record<any, T>) => {
     let match = true;
     for (const [key, value] of Object.entries(rule)) {
       if (typeof value === "string") {
@@ -131,13 +116,13 @@ export function must(rule: Record<any, any>) {
         const con = value.shift();
         value.forEach((item, index) => {
           if (index === 0) {
-            str += `object[key]${item}`;
+            str += `(${JSON.stringify(object[key])})${item}`;
           } else {
-            str += `${con}object[key]${item}`;
+            str += `${con}(${JSON.stringify(object[key])})${item}`;
           }
         });
         // eslint-disable-next-line no-eval
-        if (!eval(str)) {
+        if (!(0, eval)(str)) {
           match = false;
         }
       } else if (typeof value === "boolean") {
@@ -159,7 +144,7 @@ export function factor(d: number, nums: Iterable<number>) {
   return true;
 }
 
-export function frequency(data: Iterable<any>) {
+export function frequency<T = any>(data: Iterable<T>): Map<T, number> {
   const chart = new Map();
   for (const item of data) {
     const value = chart.get(item);
@@ -213,35 +198,13 @@ export function prime(n: number) {
   return true;
 }
 
-export function mergeSort(list: any[]) {
-  function merge(left: any[], right: any[]) {
-    const list2 = [];
-    while (left.length && right.length) {
-      if (left[0] < right[0]) {
-        list2.push(left.shift());
-      } else {
-        list2.push(right.shift());
-      }
-    }
-    return [...list, ...left, ...right];
-  }
-  function sort(list2: any[], half = list.length / 2): any[] {
-    if (list2.length < 2) {
-      return list2;
-    }
-    const left = list2.splice(0, half);
-    return merge(sort(left), sort(list2));
-  }
-  return sort(list);
-}
-
-export function mode(data: Iterable<any>) {
+export function mode<T = any>(data: Iterable<T>): T[] {
   const chart = frequency(data);
   const max = Math.max(...chart.values());
   return [...chart.keys()].filter((x) => chart.get(x) === max);
 }
 
-export function quickSort(items: any[]): any[] {
+export function quickSort<T = any>(items: T[]): T[] {
   const { length } = items;
 
   if (length <= 1) {
@@ -263,7 +226,7 @@ export function quickSort(items: any[]): any[] {
   return sorted;
 }
 
-export function shellSort(items: any[]): any[] {
+export function shellSort<T = any>(items: T[]): T[] {
   let interval = 1;
 
   while (interval < items.length / 3) {
@@ -286,14 +249,30 @@ export function shellSort(items: any[]): any[] {
   return items;
 }
 
-export function zip(...lists: any[]) {
-  const zipped = [];
+export function zip<T = any>(...lists: T[][]): T[][] {
+  const zipped: T[][] = [];
   for (let i = 0; i < lists[0].length; i += 1) {
-    const item = [];
+    const item: T[] = [];
     for (const list of lists) {
       item.push(list[i]);
     }
     zipped.push(item);
   }
   return zipped;
+}
+
+export function unite<T = any>(...lists: T[][]): T[] {
+  let unision: T[] = [];
+  for (const list of lists) {
+    unision = unision.concat(list);
+  }
+  return unision;
+}
+
+export function subtract<T = any>(target: T[], ...lists: T[][]): T[] {
+  let sub: T[] = [];
+  for (const list of lists) {
+    sub = sub.concat(list);
+  }
+  return target.filter((x) => !sub.includes(x));
 }

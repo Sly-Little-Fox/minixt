@@ -1,28 +1,62 @@
-declare function matches(rule: Record<any, any>): (object: Record<any, any>) => boolean;
-declare function matchesProperty(key: any, value: any): (object: Record<any, any>) => boolean;
+declare function matches(
+  rule: Record<any, any>
+): (object: Record<any, any>) => boolean;
+declare function matchesProperty(
+  key: any,
+  value: any
+): (object: Record<any, any>) => boolean;
 declare function property(key: any): (object: Record<any, any>) => any;
 declare function range(start: number, end: number, step?: number): number[];
-declare function exclude(...lists: any[][]): any[];
-declare function filter(list: any[], fun: (value: any, index: number, array: any[]) => unknown): any[];
-declare function intersect(...lists: any[][]): any[];
-declare function partition(list: any[], rule: ((...args: any[]) => unknown) | Record<any, any> | any[] | string): any[][];
-declare function factorial(input: number): number;
-declare function fibonacci(n: number): number;
+declare function exclude<T = any>(...lists: T[][]): T[];
+declare function filter<T = any>(
+  list: T[],
+  fun: (value: any, index: number, array: any[]) => unknown
+): T[];
+declare function intersect<T = any>(...lists: T[][]): T[];
+declare function partition<T = any>(
+  list: T[],
+  rule: ((...args: T[]) => unknown) | Record<any, T> | T[] | string
+): T[][];
 /**
  *
  * @deprecated This function is unsafe because it uses eval
  */
-declare function must(rule: Record<any, any>): (object: Record<any, any>) => boolean;
+declare function must<T = any>(
+  rule: Record<any, T>
+): (object: Record<any, T>) => boolean;
 declare function factor(d: number, nums: Iterable<number>): boolean;
-declare function frequency(data: Iterable<any>): Map<any, any>;
+declare function frequency<T = any>(data: Iterable<T>): Map<T, number>;
 declare function factors(n: number): number[];
 declare function gcd(a: number, b: number): number;
 declare function hcf(...nums: number[]): number;
 declare function prime(n: number): boolean;
-declare function mergeSort(list: any[]): any[];
-declare function mode(data: Iterable<any>): any[];
-declare function quickSort(items: any[]): any[];
-declare function shellSort(items: any[]): any[];
-declare function zip(...lists: any[]): any[][];
+declare function mode<T = any>(data: Iterable<T>): T[];
+declare function quickSort<T = any>(items: T[]): T[];
+declare function shellSort<T = any>(items: T[]): T[];
+declare function zip<T = any>(...lists: T[][]): T[][];
+declare function unite<T = any>(...lists: T[][]): T[];
+declare function subtract<T = any>(target: T[], ...lists: T[][]): T[];
 
-export { exclude, factor, factorial, factors, fibonacci, filter, frequency, gcd, hcf, intersect, matches, matchesProperty, mergeSort, mode, must, partition, prime, property, quickSort, range, shellSort, zip };
+export {
+  exclude,
+  factor,
+  factors,
+  filter,
+  frequency,
+  gcd,
+  hcf,
+  intersect,
+  matches,
+  matchesProperty,
+  mode,
+  must,
+  partition,
+  prime,
+  property,
+  quickSort,
+  range,
+  shellSort,
+  subtract,
+  unite,
+  zip,
+};
