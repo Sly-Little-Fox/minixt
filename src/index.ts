@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-implied-eval */
-
 export function matches(rule: Record<any, any>) {
   return (object: Record<any, any>) => {
     let match = true;
